@@ -19,27 +19,6 @@ class OrderController {
     @Autowired
     private ItemsRepo itemsRepo;
 
-    /* POST body
-
-    {
-	"name": "order_15",
-	"items":
-		[
-			{
-				"itemId": "15001",
-				"itemPrice": 1500,
-				"itemQuantity": 10
-			},
-			{
-				"itemId": "17002",
-				"itemPrice": 11000,
-				"itemQuantity": 10
-			}
-		]
-    }
-
-     */
-
     @PostMapping(value = "/order")
     public Order createOrder(@RequestBody Order order) {
         return orderRepo.save(order);

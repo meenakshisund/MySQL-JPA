@@ -38,7 +38,12 @@ public class Order implements Serializable {
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
 
-    public double getTotal() { return items.stream().map(Items::getTotalPrice).reduce(0.0, Double::sum); }
+    public double getTotal() {
+        // return items.stream().map(Items::getTotalPrice).reduce(0.0, Double::sum);
+        // above statement works as getTotal() is called by Jackson after save() is done.
+        // before save(), value of totalPrice is always default value(0.0)
+        return total;
+    }
     public void setTotal(double total) { this.total = total; }
 
     public String getName() { return name; }

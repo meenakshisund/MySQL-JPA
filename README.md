@@ -22,6 +22,20 @@ POST: "/student"
 
 An order can have multiple items in it. Each Item has quantity and itemPrice. TotalPrice of each item is calculated and saved in DB using **@PrePersist** annotation in both entities.
 
+Order(1): order_id is primarky key
+```java
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="order_id")
+    private Set<Items> items;
+```
+
+Items(*):
+```java
+    @ManyToOne
+    private Order order;
+```
+
+
 **Note:**
 @PrePersist in Order entity did not work when all items totalPrice field values are summed up. Reason was Items will be saved to DB after Parent entity(Order) is persisted. Hence had to take all items qty and individual prices and summed up.
 
