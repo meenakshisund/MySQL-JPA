@@ -20,7 +20,10 @@ POST: "/student"
 
 # OneToMany relation: Order(1) -> Items(*)
 
-An order can have multiple items in it. Each Item has quantity and itemPrice. TotalPrice of each item is calculated and saved in DB using @PrePersist annotation. 
+An order can have multiple items in it. Each Item has quantity and itemPrice. TotalPrice of each item is calculated and saved in DB using **@PrePersist** annotation in both entities.
+
+**Note:**
+@PrePersist in Order entity did not work when all items totalPrice field values are summed up. Reason was Items will be saved to DB after Parent entity(Order) is persisted. Hence had to take all items qty and individual prices and summed up.
 
 **Order creation**
 
