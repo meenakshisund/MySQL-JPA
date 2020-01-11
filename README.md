@@ -22,7 +22,7 @@ POST: "/student"
 
 An order can have multiple items in it. Each Item has quantity and itemPrice. TotalPrice of each item is calculated and saved in DB using **@PrePersist** annotation in both entities.
 
-Order(1): order_id is primarky key
+Order(1): order_id is primary key
 ```java
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="order_id")
@@ -62,3 +62,8 @@ POST: "/order"
 ```
 
 **@EnableCaching used and @Cacheable is used to cache orders and items by id.**
+
+References:
+
+1. https://howtodoinjava.com/spring-boot2/hibernate-configuration-example/
+2. https://www.journaldev.com/2924/hibernate-one-to-many-mapping-annotation#hibernate-one-to-many-mapping-example-annotation
