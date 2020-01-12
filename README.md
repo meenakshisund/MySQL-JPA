@@ -4,7 +4,7 @@ Connect to MySQL with JPA
 1. Start MySQL outside with your own schema name. 
 2. Copy JDBC url, credentials and place in application.properties
 
-# Student retreival from MySQL
+### Student retreival from MySQL
 
 **Student Creation**
 
