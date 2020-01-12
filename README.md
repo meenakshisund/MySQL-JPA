@@ -20,26 +20,9 @@ POST: "/student"
 
 # OneToMany relation: Order(1) -> Items(*)
 
-An order can have multiple items in it. Each Item has quantity and itemPrice. TotalPrice of each item is calculated and saved in DB using **@PrePersist** annotation in both entities.
-
-Order(1): order_id is primary key
-```java
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="order_id")
-    private Set<Items> items;
-```
-
-Items(*):
-```java
-    @ManyToOne
-    private Order order;
-```
-
-
-**Note:**
-@PrePersist in Order entity did not work when all items totalPrice field values are summed up. Reason was Items will be saved to DB after Parent entity(Order) is persisted. Hence had to take all items qty and individual prices and summed up.
-
 **Order creation**
+1. Aim was to find totalPrice of each itemId in payload and save it in DB. 
+2. Sum up all totalPrices and populate, save Order level toatal Price in DB.
 
 POST: "/order"
 ```json
@@ -60,6 +43,44 @@ POST: "/order"
 		]
 }
 ```
+
+Order(1): order_id is primary key
+```java
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="order_id")
+    private Set<Items> items;
+```
+
+Items(*):
+```java
+    @ManyToOne
+    private Order order;
+```
+
+An order can have multiple items in it. Each Item has quantity and itemPrice. TotalPrice of each item is calculated and saved in DB using **@PrePersist** annotation in both entities.
+
+Order:
+```java
+    @PrePersist
+    public void findTotalPrice() {
+        //total = items.stream().map(Items::getTotalPrice).reduce(0.0, Double::sum);
+        total = 0;
+        for (Items item: items) {
+            total += item.getItemPrice() * item.getItemQuantity();
+        }
+    }
+```
+
+Items:
+```java
+    @PrePersist
+    public void findTotalPrice() {
+        totalPrice = itemPrice * itemQuantity;
+    }
+```
+
+**Note:**
+@PrePersist in Order entity did not work when all items totalPrice field values are summed up. Reason was Items will be saved to DB after Parent entity(Order) is persisted. Hence had to take all items qty and individual prices and summed up.
 
 **@EnableCaching used and @Cacheable is used to cache orders and items by id.**
 
