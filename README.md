@@ -46,6 +46,12 @@ POST: "/order"
 
 Order(1): order_id is primary key
 ```java
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="order_id")
+    private long id;
+    
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="order_id")
     private Set<Items> items;
