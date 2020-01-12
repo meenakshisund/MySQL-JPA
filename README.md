@@ -59,6 +59,12 @@ Order(1): order_id is primary key
 
 Items(*):
 ```java
+    
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id")
+    private long id;
+    
     @ManyToOne
     private Order order;
 ```
