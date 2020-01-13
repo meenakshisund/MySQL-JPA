@@ -1,6 +1,6 @@
-package com.mysql.jpa.repo;
+package com.mysql.jpa.repo.onetomany;
 
-import com.mysql.jpa.entity.Items;
+import com.mysql.jpa.entity.onetomany.Items;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
