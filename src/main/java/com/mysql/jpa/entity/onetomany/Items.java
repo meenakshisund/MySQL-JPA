@@ -30,7 +30,7 @@ public class Items implements Serializable {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="order_id_fk")
+    @JoinColumn(name = "order_id_fk")
     private Order order;
 
     @PrePersist
