@@ -137,3 +137,4 @@ References:
 1. https://howtodoinjava.com/spring-boot2/hibernate-configuration-example/
 2. https://www.journaldev.com/2924/hibernate-one-to-many-mapping-annotation#hibernate-one-to-many-mapping-example-annotation
 3. https://www.baeldung.com/jpa-joincolumn-vs-mappedby
+4. https://examples.javacodegeeks.com/enterprise-java/hibernate/hibernate-one-many-example/
