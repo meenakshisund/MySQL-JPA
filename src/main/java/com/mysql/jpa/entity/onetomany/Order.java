@@ -1,4 +1,4 @@
-package com.mysql.jpa.entity;
+package com.mysql.jpa.entity.onetomany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -13,7 +13,7 @@ public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="order_id")
+    @Column(name="order_id_pk")
     private long id;
 
     @Column(name="total")
@@ -22,8 +22,7 @@ public class Order implements Serializable {
     @Column(name="name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="order_id")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Items> items;
 
     @PrePersist

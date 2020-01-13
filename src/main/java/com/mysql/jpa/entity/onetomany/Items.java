@@ -1,4 +1,4 @@
-package com.mysql.jpa.entity;
+package com.mysql.jpa.entity.onetomany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,17 +25,18 @@ public class Items implements Serializable {
     @Column(name="total_price")
     private double totalPrice;
 
-    @PrePersist
-    public void findTotalPrice() {
-        totalPrice = itemPrice * itemQuantity;
-    }
-
     @Column(name="quantity")
     private int itemQuantity;
 
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "order_id_fk")
     private Order order;
+
+    @PrePersist
+    public void findTotalPrice() {
+        totalPrice = itemPrice * itemQuantity;
+    }
 
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }

@@ -1,9 +1,9 @@
 package com.mysql.jpa.controller;
 
-import com.mysql.jpa.entity.Items;
-import com.mysql.jpa.entity.Order;
-import com.mysql.jpa.repo.ItemsRepo;
-import com.mysql.jpa.repo.OrderRepo;
+import com.mysql.jpa.entity.onetomany.Items;
+import com.mysql.jpa.entity.onetomany.Order;
+import com.mysql.jpa.repo.onetomany.ItemsRepo;
+import com.mysql.jpa.repo.onetomany.OrderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
